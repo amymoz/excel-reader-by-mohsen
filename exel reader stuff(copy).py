@@ -16,3 +16,4 @@ for i in range(sheet.ncols): # ejraye halghe be tedad sutun
 
 for i in range(sheet.nrows): # ejraye halghe be tedad satr
     print(sheet.cell_value(i, 0)) # namayesh meghdar har satr
+
