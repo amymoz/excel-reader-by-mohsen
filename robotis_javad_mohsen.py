@@ -1,18 +1,18 @@
 import numpy
 from time import sleep
-import pypot.dynamixel as dynamixel
+import pypot.dynamixel as dyn
 import xlrd
 
-excel_file = "/media/root/Game/Professional/Project/Python/Book1.xlsx"
+excel_file = "Book1.xlsx"
 
-port = dynamixel.get_available_ports()[0]
-dxl = dynamixel.DxlIO(port)
+port = dyn.get_available_ports()[0]
+dxl = dyn.DxlIO(port)
 fids = dxl.scan(ids=list(range(19)))
 
 WorkBook = xlrd.open_workbook(excel_file)
 sheet = WorkBook.sheet_by_index(0)
 
-def get_pos_x(line):
+def motor_poses(line):
     dynamic = []
     for i in range(sheet.ncols):
         arv = sheet.cell_value(line, i)
@@ -30,5 +30,7 @@ def get_pos():
 
 dxl.enable_torque(fids)
 
+set_pos(motor_poses(0))
+sleep(3)
 
 dxl.disable_torque(fids)
